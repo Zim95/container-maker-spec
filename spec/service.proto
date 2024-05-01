@@ -1,0 +1,32 @@
+syntax = "proto3";
+
+
+package containermaker;
+
+
+import "types.proto";
+
+
+service ContainerMakerAPI {
+    /**
+     * Creates a container on the running environment.
+     * Cannot create duplicate containers, i.e. containers with the same name.
+     * Takes in a CreateContainerRequest and returns CreateContainerResponse.
+     */
+    rpc createContainer(CreateContainerRequest) returns (CreateContainerResponse);
+    /**
+     * Starts a container on the running environment. 
+     * Takes in a ManipulateContainerRequest and returns the StartContainerResponse.
+     */
+    rpc startContainer(ManipulateContainerRequest) returns (StartContainerResponse);
+    /**
+     * Starts a container on the running environment. 
+     * Takes in a ManipulateContainerRequest and returns the StopContainerResponse.
+     */
+    rpc stopContainer(ManipulateContainerRequest) returns (StopContainerResponse);
+    /**
+     * Starts a container on the running environment. 
+     * Takes in a ManipulateContainerRequest and returns the DeleteContainerResponse.
+     */
+    rpc deleteContainer(ManipulateContainerRequest) returns (DeleteContainerResponse);
+}
