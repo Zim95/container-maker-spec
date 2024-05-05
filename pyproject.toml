@@ -1,0 +1,24 @@
+[tool.poetry]
+name = "container-maker-spec"
+version = "0.0.1"
+description = ""
+authors = ["Namah Shrestha"]
+readme = "README.md"
+packages = [{include = "container_maker_spec"}]
+include = ["container_maker_spec/**/*"]
+
+
+[tool.poetry.dependencies]
+python = ">=3.8,<3.12"
+grpcio = "^1.62.2"
+grpcio-tools = "^1.62.2"
+protobuf = "^4.25.3"
+
+
+[build-system]
+requires = ["poetry-core", "grpcio-tools"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.poetry.build]
+generate-setup-file = false
+script = "build.py"

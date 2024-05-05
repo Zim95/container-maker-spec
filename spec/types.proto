@@ -25,7 +25,7 @@ message CreateContainerResponseItem {
     string container_image = 2; // The image of the container.
     string container_name = 3; // The name of the container.
     string container_network = 4; // The network of the container.
-    uint16 container_port = 5; // The port of the container which is opened. TODO: This might be optional or there may be multiple.
+    uint32 container_port = 5; // The port of the container which is opened. TODO: This might be optional or there may be multiple.
 }
 
 
@@ -43,9 +43,9 @@ message CreateContainerResponse {
  *       This ususally hapens when we spawn multiple services for the same container name (In case of kubernetes).
  */
 message ManipulateContainerRequest {
-    repeated string container_ids = 0; // List of container ids to be manipulated.
-    string container_network = 1; // The network where the container ids are deployed.
-    string container_name = 2; // The name of the associated container ids.
+    repeated string container_ids = 1; // List of container ids to be manipulated.
+    string container_network = 2; // The network where the container ids are deployed.
+    string container_name = 3; // The name of the associated container ids.
 }
 
 
