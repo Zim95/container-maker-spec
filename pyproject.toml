@@ -1,18 +1,18 @@
 [tool.poetry]
 name = "container-maker-spec"
-version = "0.0.2"
+version = "0.1.0"
 description = ""
 authors = ["Namah Shrestha"]
 readme = "README.md"
-packages = [{include = "container_maker_spec"}]
-include = ["container_maker_spec/**/*"]
+packages = [{include="container_maker_spec"}]
+include = ["container_maker_spec/*"]
 
 
 [tool.poetry.dependencies]
 python = ">=3.8,<3.12"
-grpcio = "^1.66.2"
-grpcio-tools = "^1.66.2"
-protobuf = "^5.28.2"
+grpcio = "^1.70.0"
+grpcio-tools = "^1.70.0"
+protobuf = "^5.29.0"
 
 
 [build-system]
