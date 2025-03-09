@@ -5,15 +5,13 @@ description = ""
 authors = ["Namah Shrestha"]
 readme = "README.md"
 packages = [{include="container_maker_spec"}]
-include = ["container_maker_spec/*"]
-
+include = ["container_maker_spec/**/*"]
 
 [tool.poetry.dependencies]
 python = ">=3.8,<3.12"
+protobuf = "^5.29.0"
 grpcio = "^1.70.0"
 grpcio-tools = "^1.70.0"
-protobuf = "^5.29.0"
-
 
 [build-system]
 requires = ["poetry-core", "grpcio-tools"]
