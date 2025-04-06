@@ -14,7 +14,7 @@ grpcio = "^1.70.0"
 grpcio-tools = "^1.70.0"
 
 [build-system]
-requires = ["poetry-core", "grpcio-tools"]
+requires = ["poetry-core", "grpcio-tools==1.70.0"]
 build-backend = "poetry.core.masonry.api"
 
 [tool.poetry.build]
