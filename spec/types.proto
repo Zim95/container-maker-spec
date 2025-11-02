@@ -4,102 +4,102 @@ syntax = "proto3";
 package containermaker;
 
 
-/**
- * Create container request. To create a container in the running environment.
- */
- message CreateContainerRequest {
-    string image_name = 1; // Name of the image. Should include repository name as well. Should be public.
-    string container_name = 2; // Name of the container that will be created.
-    string container_network = 3; // Network in which the container will be created. Network will be created if it does not exist.
-    map<string, string> publish_information = 4; // Port mappings between port inside the container and the external world.
-    map<string, string> environment = 5; // Environment variables. Usually includes sensitive information such as username and password.
+// Defines the level of network exposure for a container
+enum ExposureLevel {
+  EXPOSURE_LEVEL_UNSPECIFIED = 0;  // Default unspecified value (proto3 requirement)
+  EXPOSURE_LEVEL_INTERNAL = 1;      // only pod
+  EXPOSURE_LEVEL_CLUSTER_LOCAL = 2; // service with cluster ip
+  EXPOSURE_LEVEL_CLUSTER_EXTERNAL = 3; // service with external ip
+  EXPOSURE_LEVEL_EXPOSED = 4;       // ingress level
 }
 
 
-/**
- * Create container response item.
- * The actual response will be a list of these.
- */
-message CreateContainerResponseItem {
-    string container_id = 1; // The id of the container. We might have multiple of them.
-    string container_image = 2; // The image of the container.
-    string container_name = 3; // The name of the container.
-    string container_network = 4; // The network of the container.
-    uint32 container_port = 5; // The port of the container which is opened. TODO: This might be optional or there may be multiple.
+// The publish information of the container
+message PublishInformation {
+  int32 publish_port = 1;  // the port of the service
+  int32 target_port = 2;  // the port of the pod
+  string protocol = 3;  // the protocol of the service
+  optional int32 node_port = 4;  // the node port of the service. The service type must be NodePort to use this.
 }
 
 
-/**
- * Create container response. Collection of create container response items.
- */
-message CreateContainerResponse {
-    repeated CreateContainerResponseItem create_container_response_item = 1; // CreateContainerResponseItem list.
+// Represents configuration for creating a container
+message CreateContainerRequest {
+  string image_name = 1;  // name of the image to use
+  string container_name = 2;  // name of the container
+  string network_name = 3;  // name of the network
+  ExposureLevel exposure_level = 4;  // exposure level of the container
+  repeated PublishInformation publish_information = 5;  // list of publish information
+  map<string, string> environment_variables = 6;  // environment variables
 }
 
 
-/**
- * Manipulate a created container. Start, Stop, Delete operations.
- * NOTE: A single container name, network might be associated with multiple container ids.
- *       This ususally hapens when we spawn multiple services for the same container name (In case of kubernetes).
- */
-message ManipulateContainerRequest {
-    repeated string container_ids = 1; // List of container ids to be manipulated.
-    string container_network = 2; // The network where the container ids are deployed.
-    string container_name = 3; // The name of the associated container ids.
+// Get Container Request
+message GetContainerRequest {
+    string container_id = 1;  // id of the container
+    string network_name = 2;  // network of the container
 }
 
 
-/**
- * Start Container Response Item.
- */
-message StartContainerResponseItem {
-    string container_id = 1; // Id of the container.
-    string container_ip = 2; // Ip of the container.
-    string container_name = 3; // Name of the container
+// Delete Container Request
+message DeleteContainerRequest {
+    string container_id = 1;  // id of the container
+    string network_name = 2;  // network of the container
 }
 
 
-/**
- * Collection of StartContainerResponseItem. The actual start container response. 
- */
-message StartContainerResponse {
-    repeated StartContainerResponseItem start_container_response_item = 1; // StartContainerResponseItem list.
+// List Container Request
+message ListContainerRequest {
+    string network_name = 1;  // network of the containers
 }
 
 
-/**
- * Stop Container Response Item.
- */
-message StopContainerResponseItem {
-    string container_id = 1; // Id of the container.
-    string container_name = 2; // Name of the container.
-    string container_network = 3; // Network of the container.
-    string status = 4; // Stopped status.
+// Save Container Request
+message SaveContainerRequest {
+    string container_id = 1;  // id of the container
+    string network_name = 2;  // network of the container
 }
 
 
-/**
- * Collection of StopContainerResponseItem. The actual stop container response.
- */
-message StopContainerResponse {
-    repeated StopContainerResponseItem stop_container_response_item = 1; // StopContainerResponseItem list.
+// Represents the port information for the container response
+message PortInformation {
+    optional string name = 1;  // name of the port
+    int32 container_port = 2;  // the actual container port
+    optional string protocol = 3;  // the protocol of the container port
 }
 
 
-/**
- * Delete Container Response Item.
- */
-message DeleteContainerResponseItem {
-    string container_id = 1; // Id of the container.
-    string container_name = 2; // Name of the container.
-    string container_network = 3; // Network of the container.
-    string status = 4; // Deleted status.
+// Represents container response
+message ContainerResponse {
+    string container_id = 1;  // the id of the container
+    string container_name = 2;  // the name of the container
+    string container_ip = 3;  // the ip of the container
+    string container_network = 4;  // the network of the container
+    repeated PortInformation ports = 5;  // the port information of the container
 }
 
 
-/**
- * Collection of DeleteContainerResponseItem. The actual delete container response.
- */
+// list container response
+message ListContainerResponse {
+    repeated ContainerResponse containers = 1;  // the list of containers
+}
+
+
+// delete container response
 message DeleteContainerResponse {
-    repeated DeleteContainerResponseItem delete_container_response_item = 1; // DeleteContainerResponseItem list.
+    string container_id = 1;  // the id of the container
+    string status = 2;  // the status of the container
+}
+
+
+// Represents the saved pod response
+message SavedPodResponse {
+    string pod_name = 1;  // the name of the pod
+    string namespace_name = 2;  // the namespace of the pod
+    string image_name = 3;  // the image of the pod
+}
+
+// Save container response
+message SaveContainerResponse {
+    repeated SavedPodResponse saved_pods = 1;  // the list of saved pods. Note: We should only have one pod in the list.
 }

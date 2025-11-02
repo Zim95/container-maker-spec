@@ -9,24 +9,28 @@ import "types.proto";
 
 service ContainerMakerAPI {
     /**
-     * Creates a container on the running environment.
-     * Cannot create duplicate containers, i.e. containers with the same name.
-     * Takes in a CreateContainerRequest and returns CreateContainerResponse.
-     */
-    rpc createContainer(CreateContainerRequest) returns (CreateContainerResponse);
+    * List all containers within the network.
+    * Takes in a ListContainerRequest and returns ListContainerResponse.
+    */
+    rpc listContainer(ListContainerRequest) returns (ListContainerResponse);
     /**
-     * Starts a container on the running environment. 
-     * Takes in a ManipulateContainerRequest and returns the StartContainerResponse.
+     * Gets or Creates a container on the running environment.
+     * Takes in a CreateContainerRequest and returns ContainerResponse.
      */
-    rpc startContainer(ManipulateContainerRequest) returns (StartContainerResponse);
+    rpc createContainer(CreateContainerRequest) returns (ContainerResponse);
     /**
-     * Starts a container on the running environment. 
-     * Takes in a ManipulateContainerRequest and returns the StopContainerResponse.
+     * Get a container.
+     * Takes in a GetContainerRequest and returns ContainerResponse.
      */
-    rpc stopContainer(ManipulateContainerRequest) returns (StopContainerResponse);
+    rpc getContainer(GetContainerRequest) returns (ContainerResponse);
     /**
-     * Starts a container on the running environment. 
-     * Takes in a ManipulateContainerRequest and returns the DeleteContainerResponse.
+     * Delete a container.
+     * Takes in a DeleteContainerRequest and returns DeleteContainerResponse.
      */
-    rpc deleteContainer(ManipulateContainerRequest) returns (DeleteContainerResponse);
+    rpc deleteContainer(DeleteContainerRequest) returns (DeleteContainerResponse);
+    /**
+     * Save a container.
+     * Takes in a SaveContainerRequest and returns SaveContainerResponse.
+     */
+    rpc saveContainer(SaveContainerRequest) returns (SaveContainerResponse);
 }

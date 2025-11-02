@@ -1,3 +1,10 @@
+'''
+This build file executes when hitting poetry install locally.
+But when importing this package from git, this file is not run.
+
+So, we need to manually run this file, generate the proto files and commit to git from now on.
+'''
+
 # builtins
 import os
 import pathlib
