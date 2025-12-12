@@ -24,7 +24,7 @@ _sym_db = _symbol_database.Default()
 
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x0btypes.proto\x12\x0e\x63ontainermaker\"w\n\x12PublishInformation\x12\x14\n\x0cpublish_port\x18\x01 \x01(\x05\x12\x13\n\x0btarget_port\x18\x02 \x01(\x05\x12\x10\n\x08protocol\x18\x03 \x01(\t\x12\x16\n\tnode_port\x18\x04 \x01(\x05H\x00\x88\x01\x01\x42\x0c\n\n_node_port\"\xf0\x02\n\x16\x43reateContainerRequest\x12\x12\n\nimage_name\x18\x01 \x01(\t\x12\x16\n\x0e\x63ontainer_name\x18\x02 \x01(\t\x12\x14\n\x0cnetwork_name\x18\x03 \x01(\t\x12\x35\n\x0e\x65xposure_level\x18\x04 \x01(\x0e\x32\x1d.containermaker.ExposureLevel\x12?\n\x13publish_information\x18\x05 \x03(\x0b\x32\".containermaker.PublishInformation\x12_\n\x15\x65nvironment_variables\x18\x06 \x03(\x0b\x32@.containermaker.CreateContainerRequest.EnvironmentVariablesEntry\x1a;\n\x19\x45nvironmentVariablesEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\r\n\x05value\x18\x02 \x01(\t:\x02\x38\x01\"A\n\x13GetContainerRequest\x12\x14\n\x0c\x63ontainer_id\x18\x01 \x01(\t\x12\x14\n\x0cnetwork_name\x18\x02 \x01(\t\"D\n\x16\x44\x65leteContainerRequest\x12\x14\n\x0c\x63ontainer_id\x18\x01 \x01(\t\x12\x14\n\x0cnetwork_name\x18\x02 \x01(\t\",\n\x14ListContainerRequest\x12\x14\n\x0cnetwork_name\x18\x01 \x01(\t\"B\n\x14SaveContainerRequest\x12\x14\n\x0c\x63ontainer_id\x18\x01 \x01(\t\x12\x14\n\x0cnetwork_name\x18\x02 \x01(\t\"i\n\x0fPortInformation\x12\x11\n\x04name\x18\x01 \x01(\tH\x00\x88\x01\x01\x12\x16\n\x0e\x63ontainer_port\x18\x02 \x01(\x05\x12\x15\n\x08protocol\x18\x03 \x01(\tH\x01\x88\x01\x01\x42\x07\n\x05_nameB\x0b\n\t_protocol\"\xa2\x01\n\x11\x43ontainerResponse\x12\x14\n\x0c\x63ontainer_id\x18\x01 \x01(\t\x12\x16\n\x0e\x63ontainer_name\x18\x02 \x01(\t\x12\x14\n\x0c\x63ontainer_ip\x18\x03 \x01(\t\x12\x19\n\x11\x63ontainer_network\x18\x04 \x01(\t\x12.\n\x05ports\x18\x05 \x03(\x0b\x32\x1f.containermaker.PortInformation\"N\n\x15ListContainerResponse\x12\x35\n\ncontainers\x18\x01 \x03(\x0b\x32!.containermaker.ContainerResponse\"?\n\x17\x44\x65leteContainerResponse\x12\x14\n\x0c\x63ontainer_id\x18\x01 \x01(\t\x12\x0e\n\x06status\x18\x02 \x01(\t\"P\n\x10SavedPodResponse\x12\x10\n\x08pod_name\x18\x01 \x01(\t\x12\x16\n\x0enamespace_name\x18\x02 \x01(\t\x12\x12\n\nimage_name\x18\x03 \x01(\t\"M\n\x15SaveContainerResponse\x12\x34\n\nsaved_pods\x18\x01 \x03(\x0b\x32 .containermaker.SavedPodResponse*\xaf\x01\n\rExposureLevel\x12\x1e\n\x1a\x45XPOSURE_LEVEL_UNSPECIFIED\x10\x00\x12\x1b\n\x17\x45XPOSURE_LEVEL_INTERNAL\x10\x01\x12 \n\x1c\x45XPOSURE_LEVEL_CLUSTER_LOCAL\x10\x02\x12#\n\x1f\x45XPOSURE_LEVEL_CLUSTER_EXTERNAL\x10\x03\x12\x1a\n\x16\x45XPOSURE_LEVEL_EXPOSED\x10\x04\x62\x06proto3')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x0btypes.proto\x12\x0e\x63ontainermaker\"w\n\x12PublishInformation\x12\x14\n\x0cpublish_port\x18\x01 \x01(\x05\x12\x13\n\x0btarget_port\x18\x02 \x01(\x05\x12\x10\n\x08protocol\x18\x03 \x01(\t\x12\x16\n\tnode_port\x18\x04 \x01(\x05H\x00\x88\x01\x01\x42\x0c\n\n_node_port\"\xe4\x02\n\x14ResourceRequirements\x12\x18\n\x0b\x63pu_request\x18\x01 \x01(\tH\x00\x88\x01\x01\x12\x16\n\tcpu_limit\x18\x02 \x01(\tH\x01\x88\x01\x01\x12\x1b\n\x0ememory_request\x18\x03 \x01(\tH\x02\x88\x01\x01\x12\x19\n\x0cmemory_limit\x18\x04 \x01(\tH\x03\x88\x01\x01\x12\x1e\n\x11\x65phemeral_request\x18\x05 \x01(\tH\x04\x88\x01\x01\x12\x1c\n\x0f\x65phemeral_limit\x18\x06 \x01(\tH\x05\x88\x01\x01\x12 \n\x13snapshot_size_limit\x18\x07 \x01(\tH\x06\x88\x01\x01\x42\x0e\n\x0c_cpu_requestB\x0c\n\n_cpu_limitB\x11\n\x0f_memory_requestB\x0f\n\r_memory_limitB\x14\n\x12_ephemeral_requestB\x12\n\x10_ephemeral_limitB\x16\n\x14_snapshot_size_limit\"\xd4\x03\n\x16\x43reateContainerRequest\x12\x12\n\nimage_name\x18\x01 \x01(\t\x12\x16\n\x0e\x63ontainer_name\x18\x02 \x01(\t\x12\x14\n\x0cnetwork_name\x18\x03 \x01(\t\x12\x35\n\x0e\x65xposure_level\x18\x04 \x01(\x0e\x32\x1d.containermaker.ExposureLevel\x12?\n\x13publish_information\x18\x05 \x03(\x0b\x32\".containermaker.PublishInformation\x12_\n\x15\x65nvironment_variables\x18\x06 \x03(\x0b\x32@.containermaker.CreateContainerRequest.EnvironmentVariablesEntry\x12H\n\x15resource_requirements\x18\x07 \x01(\x0b\x32$.containermaker.ResourceRequirementsH\x00\x88\x01\x01\x1a;\n\x19\x45nvironmentVariablesEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\r\n\x05value\x18\x02 \x01(\t:\x02\x38\x01\x42\x18\n\x16_resource_requirements\"A\n\x13GetContainerRequest\x12\x14\n\x0c\x63ontainer_id\x18\x01 \x01(\t\x12\x14\n\x0cnetwork_name\x18\x02 \x01(\t\"D\n\x16\x44\x65leteContainerRequest\x12\x14\n\x0c\x63ontainer_id\x18\x01 \x01(\t\x12\x14\n\x0cnetwork_name\x18\x02 \x01(\t\",\n\x14ListContainerRequest\x12\x14\n\x0cnetwork_name\x18\x01 \x01(\t\"B\n\x14SaveContainerRequest\x12\x14\n\x0c\x63ontainer_id\x18\x01 \x01(\t\x12\x14\n\x0cnetwork_name\x18\x02 \x01(\t\"i\n\x0fPortInformation\x12\x11\n\x04name\x18\x01 \x01(\tH\x00\x88\x01\x01\x12\x16\n\x0e\x63ontainer_port\x18\x02 \x01(\x05\x12\x15\n\x08protocol\x18\x03 \x01(\tH\x01\x88\x01\x01\x42\x07\n\x05_nameB\x0b\n\t_protocol\"\xbb\x01\n\x12\x43ontainerResources\x12\x13\n\x0b\x63pu_request\x18\x01 \x01(\t\x12\x11\n\tcpu_limit\x18\x02 \x01(\t\x12\x16\n\x0ememory_request\x18\x03 \x01(\t\x12\x14\n\x0cmemory_limit\x18\x04 \x01(\t\x12\x19\n\x11\x65phemeral_request\x18\x05 \x01(\t\x12\x17\n\x0f\x65phemeral_limit\x18\x06 \x01(\t\x12\x1b\n\x13snapshot_size_limit\x18\x07 \x01(\t\"\xe2\x01\n\x12\x41ssociatedResource\x12\x15\n\rresource_name\x18\x01 \x01(\t\x12\x15\n\rresource_type\x18\x02 \x01(\t\x12\x44\n\x13\x63ontainer_resources\x18\x03 \x01(\x0b\x32\".containermaker.ContainerResourcesH\x00\x88\x01\x01\x12@\n\x14\x61ssociated_resources\x18\x04 \x03(\x0b\x32\".containermaker.AssociatedResourceB\x16\n\x14_container_resources\"\xe4\x01\n\x11\x43ontainerResponse\x12\x14\n\x0c\x63ontainer_id\x18\x01 \x01(\t\x12\x16\n\x0e\x63ontainer_name\x18\x02 \x01(\t\x12\x14\n\x0c\x63ontainer_ip\x18\x03 \x01(\t\x12\x19\n\x11\x63ontainer_network\x18\x04 \x01(\t\x12.\n\x05ports\x18\x05 \x03(\x0b\x32\x1f.containermaker.PortInformation\x12@\n\x14\x61ssociated_resources\x18\x06 \x03(\x0b\x32\".containermaker.AssociatedResource\"N\n\x15ListContainerResponse\x12\x35\n\ncontainers\x18\x01 \x03(\x0b\x32!.containermaker.ContainerResponse\"?\n\x17\x44\x65leteContainerResponse\x12\x14\n\x0c\x63ontainer_id\x18\x01 \x01(\t\x12\x0e\n\x06status\x18\x02 \x01(\t\"P\n\x10SavedPodResponse\x12\x10\n\x08pod_name\x18\x01 \x01(\t\x12\x16\n\x0enamespace_name\x18\x02 \x01(\t\x12\x12\n\nimage_name\x18\x03 \x01(\t\"M\n\x15SaveContainerResponse\x12\x34\n\nsaved_pods\x18\x01 \x03(\x0b\x32 .containermaker.SavedPodResponse*\xaf\x01\n\rExposureLevel\x12\x1e\n\x1a\x45XPOSURE_LEVEL_UNSPECIFIED\x10\x00\x12\x1b\n\x17\x45XPOSURE_LEVEL_INTERNAL\x10\x01\x12 \n\x1c\x45XPOSURE_LEVEL_CLUSTER_LOCAL\x10\x02\x12#\n\x1f\x45XPOSURE_LEVEL_CLUSTER_EXTERNAL\x10\x03\x12\x1a\n\x16\x45XPOSURE_LEVEL_EXPOSED\x10\x04\x62\x06proto3')
 
 _globals = globals()
 _builder.BuildMessageAndEnumDescriptors(DESCRIPTOR, _globals)
@@ -33,32 +33,38 @@ if not _descriptor._USE_C_DESCRIPTORS:
   DESCRIPTOR._loaded_options = None
   _globals['_CREATECONTAINERREQUEST_ENVIRONMENTVARIABLESENTRY']._loaded_options = None
   _globals['_CREATECONTAINERREQUEST_ENVIRONMENTVARIABLESENTRY']._serialized_options = b'8\001'
-  _globals['_EXPOSURELEVEL']._serialized_start=1353
-  _globals['_EXPOSURELEVEL']._serialized_end=1528
+  _globals['_EXPOSURELEVEL']._serialized_start=2297
+  _globals['_EXPOSURELEVEL']._serialized_end=2472
   _globals['_PUBLISHINFORMATION']._serialized_start=31
   _globals['_PUBLISHINFORMATION']._serialized_end=150
-  _globals['_CREATECONTAINERREQUEST']._serialized_start=153
-  _globals['_CREATECONTAINERREQUEST']._serialized_end=521
-  _globals['_CREATECONTAINERREQUEST_ENVIRONMENTVARIABLESENTRY']._serialized_start=462
-  _globals['_CREATECONTAINERREQUEST_ENVIRONMENTVARIABLESENTRY']._serialized_end=521
-  _globals['_GETCONTAINERREQUEST']._serialized_start=523
-  _globals['_GETCONTAINERREQUEST']._serialized_end=588
-  _globals['_DELETECONTAINERREQUEST']._serialized_start=590
-  _globals['_DELETECONTAINERREQUEST']._serialized_end=658
-  _globals['_LISTCONTAINERREQUEST']._serialized_start=660
-  _globals['_LISTCONTAINERREQUEST']._serialized_end=704
-  _globals['_SAVECONTAINERREQUEST']._serialized_start=706
-  _globals['_SAVECONTAINERREQUEST']._serialized_end=772
-  _globals['_PORTINFORMATION']._serialized_start=774
-  _globals['_PORTINFORMATION']._serialized_end=879
-  _globals['_CONTAINERRESPONSE']._serialized_start=882
-  _globals['_CONTAINERRESPONSE']._serialized_end=1044
-  _globals['_LISTCONTAINERRESPONSE']._serialized_start=1046
-  _globals['_LISTCONTAINERRESPONSE']._serialized_end=1124
-  _globals['_DELETECONTAINERRESPONSE']._serialized_start=1126
-  _globals['_DELETECONTAINERRESPONSE']._serialized_end=1189
-  _globals['_SAVEDPODRESPONSE']._serialized_start=1191
-  _globals['_SAVEDPODRESPONSE']._serialized_end=1271
-  _globals['_SAVECONTAINERRESPONSE']._serialized_start=1273
-  _globals['_SAVECONTAINERRESPONSE']._serialized_end=1350
+  _globals['_RESOURCEREQUIREMENTS']._serialized_start=153
+  _globals['_RESOURCEREQUIREMENTS']._serialized_end=509
+  _globals['_CREATECONTAINERREQUEST']._serialized_start=512
+  _globals['_CREATECONTAINERREQUEST']._serialized_end=980
+  _globals['_CREATECONTAINERREQUEST_ENVIRONMENTVARIABLESENTRY']._serialized_start=895
+  _globals['_CREATECONTAINERREQUEST_ENVIRONMENTVARIABLESENTRY']._serialized_end=954
+  _globals['_GETCONTAINERREQUEST']._serialized_start=982
+  _globals['_GETCONTAINERREQUEST']._serialized_end=1047
+  _globals['_DELETECONTAINERREQUEST']._serialized_start=1049
+  _globals['_DELETECONTAINERREQUEST']._serialized_end=1117
+  _globals['_LISTCONTAINERREQUEST']._serialized_start=1119
+  _globals['_LISTCONTAINERREQUEST']._serialized_end=1163
+  _globals['_SAVECONTAINERREQUEST']._serialized_start=1165
+  _globals['_SAVECONTAINERREQUEST']._serialized_end=1231
+  _globals['_PORTINFORMATION']._serialized_start=1233
+  _globals['_PORTINFORMATION']._serialized_end=1338
+  _globals['_CONTAINERRESOURCES']._serialized_start=1341
+  _globals['_CONTAINERRESOURCES']._serialized_end=1528
+  _globals['_ASSOCIATEDRESOURCE']._serialized_start=1531
+  _globals['_ASSOCIATEDRESOURCE']._serialized_end=1757
+  _globals['_CONTAINERRESPONSE']._serialized_start=1760
+  _globals['_CONTAINERRESPONSE']._serialized_end=1988
+  _globals['_LISTCONTAINERRESPONSE']._serialized_start=1990
+  _globals['_LISTCONTAINERRESPONSE']._serialized_end=2068
+  _globals['_DELETECONTAINERRESPONSE']._serialized_start=2070
+  _globals['_DELETECONTAINERRESPONSE']._serialized_end=2133
+  _globals['_SAVEDPODRESPONSE']._serialized_start=2135
+  _globals['_SAVEDPODRESPONSE']._serialized_end=2215
+  _globals['_SAVECONTAINERRESPONSE']._serialized_start=2217
+  _globals['_SAVECONTAINERRESPONSE']._serialized_end=2294
 # @@protoc_insertion_point(module_scope)
