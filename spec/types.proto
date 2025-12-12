@@ -23,6 +23,18 @@ message PublishInformation {
 }
 
 
+// Resource requirements for creating a container
+message ResourceRequirements {
+  optional string cpu_request = 1;
+  optional string cpu_limit = 2;
+  optional string memory_request = 3;
+  optional string memory_limit = 4;
+  optional string ephemeral_request = 5;
+  optional string ephemeral_limit = 6;
+  optional string snapshot_size_limit = 7;
+}
+
+
 // Represents configuration for creating a container
 message CreateContainerRequest {
   string image_name = 1;  // name of the image to use
@@ -31,6 +43,7 @@ message CreateContainerRequest {
   ExposureLevel exposure_level = 4;  // exposure level of the container
   repeated PublishInformation publish_information = 5;  // list of publish information
   map<string, string> environment_variables = 6;  // environment variables
+  optional ResourceRequirements resource_requirements = 7;  // resource requirements for the container
 }
 
 
@@ -69,6 +82,27 @@ message PortInformation {
 }
 
 
+// Container resources in response (for associated resources)
+message ContainerResources {
+    string cpu_request = 1;
+    string cpu_limit = 2;
+    string memory_request = 3;
+    string memory_limit = 4;
+    string ephemeral_request = 5;
+    string ephemeral_limit = 6;
+    string snapshot_size_limit = 7;
+}
+
+
+// Associated resource (recursive structure for pod -> service -> ingress hierarchy)
+message AssociatedResource {
+    string resource_name = 1;  // name of the resource
+    string resource_type = 2;  // type of resource: "pod", "service", "ingress"
+    optional ContainerResources container_resources = 3;  // only present for pods
+    repeated AssociatedResource associated_resources = 4;  // nested resources
+}
+
+
 // Represents container response
 message ContainerResponse {
     string container_id = 1;  // the id of the container
@@ -76,6 +110,7 @@ message ContainerResponse {
     string container_ip = 3;  // the ip of the container
     string container_network = 4;  // the network of the container
     repeated PortInformation ports = 5;  // the port information of the container
+    repeated AssociatedResource associated_resources = 6;  // associated resources (pods, services, ingresses)
 }
 
 
